@@ -1,7 +1,10 @@
 <?php
 $route = function () {
     route('gags.create', function () {
-        echo input();
+        $input = input();
+        $button = button();
+        $form = form([$input, $button]);
+        echo $form;
     });
 };
 return $route;

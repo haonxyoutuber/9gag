@@ -1,4 +1,6 @@
 <?php
+use Helpers\Button;
+use Helpers\Form;
 use Helpers\Input;
 
 /**
@@ -26,4 +28,15 @@ function autoload($pattern){
 
 function input(){
     return new Input();
+}
+function button(){
+    return new Button();
+}
+
+/**
+ * @param array $children
+ * @return Form
+ */
+function form($children){
+    return new Form($children);
 }
