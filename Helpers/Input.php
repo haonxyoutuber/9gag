@@ -13,17 +13,20 @@ class Input
 {
     private $title;
     private $placeholder;
+    private $name;
 
     public function __construct($title)
     {
         $this->setTitle($title);
         $this->setPlaceholder($title);
+        $this->setName(camel_case($title));
     }
 
     function __toString()
     {
         $placeholder = $this->getPlaceholder();
-        return "<input placeholder='$placeholder'>";
+        $name = $this->getName();
+        return "<input placeholder='$placeholder' name='$name'>";
     }
 
     /**
@@ -60,6 +63,24 @@ class Input
     public function getPlaceholder()
     {
         return $this->placeholder;
+    }
+
+    /**
+     * @param mixed $name
+     * @return Input
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
 }

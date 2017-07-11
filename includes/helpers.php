@@ -40,3 +40,7 @@ function button(){
 function form($children){
     return new Form($children);
 }
+function camel_case($str){
+    $value = ucwords(str_replace(['-', '_'], ' ', $str));
+    return lcfirst(str_replace(' ', '', $value));
+}
