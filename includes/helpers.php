@@ -26,8 +26,8 @@ function autoload($pattern){
     }
 }
 
-function input(){
-    return new Input();
+function input($title){
+    return new Input($title);
 }
 function button(){
     return new Button();
