@@ -12,6 +12,7 @@ namespace Helpers;
 class Form
 {
     private $children = [];
+    private $actionUrl;
 
     public function __construct($children)
     {
@@ -20,7 +21,8 @@ class Form
 
     function __toString()
     {
-        $html = '<form>';
+        $actionUrl = $this->getActionUrl();
+        $html = "<form method='post' action='$actionUrl'>";
         foreach ($this->children as $child){
             $html .= $child;
         }
@@ -32,6 +34,36 @@ class Form
     public function setChildren($children)
     {
         $this->children = $children;
+    }
+
+    /**
+     * @param mixed $actionUrl
+     * @return Form
+     */
+    public function setActionUrl($actionUrl)
+    {
+        $this->actionUrl = $actionUrl;
+        return $this;
+    }
+
+    public function toRoute($routeName, $params = [])
+    {
+        $paramsString = http_build_query($params);
+        $actionUrl = '?route=' . $routeName . '&' . $paramsString;
+        $this->setActionUrl($actionUrl);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActionUrl()
+    {
+        if(is_null($this->actionUrl)){
+            $defaultRoute = 'default';
+            return '?route='. $defaultRoute;
+        }
+
+        return $this->actionUrl;
     }
 
 }

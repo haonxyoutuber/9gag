@@ -4,6 +4,7 @@ $route = function () {
         $input = input();
         $button = button();
         $form = form([$input, $button]);
+        $form->toRoute('gags.store');
         echo $form;
     });
 };
